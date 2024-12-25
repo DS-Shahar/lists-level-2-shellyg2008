@@ -25,18 +25,6 @@ public class exe2 {
 	    return dummy.getNext();
 	}
 	
-	public static int find_min(Node l1) {
-		 int min = l1.getValue();
-
-		    while (l1 != null) {
-		        if (l1.getValue() < min) {
-		            min = l1.getValue();
-		        }
-		        l1 = l1.getNext();
-		    }
-
-		    return min;
-		}
 	
 	public static Node exe2(Node head) {
 	    Node<Integer> min_p = head;
@@ -83,8 +71,230 @@ public class exe2 {
 
 	    return newlist.getNext();
 	}
+	public static int exe3(Node<Integer> a1, int n){
+		Node<Integer> a = a1;
+		int i=0;
+		int length=0;
+
+		 while (a!= null) {
+	            length++;
+	            a =a.getNext();
+	        }
+		 a=a1;
+		 
+		 int minl=length;
+		 int minr=length;
+		 
+		 while(a!=null) {
+			if(a.getValue()==n) {
+				if(i<minl) {
+					minl=i;
+					
+				}
+				if(length-i-1<minr) {
+					minr=length-i-1;
+				}
+			}
+			i++;
+			a=a.getNext();
+		}
+		 return minr+minl;
+	}
 	
 	
+	
+	
+	 public static boolean exe4(Node<Integer>head) {
+		 Node<Integer> list = head;
+		 Node<Integer> current = head.getNext();
+		 while(list!=null) {
+			 
+			 while(current!=null) {
+				 if(list.getValue()==current.getValue()) {
+					 return false;
+				 }
+				 else {
+					 current=current.getNext();
+				 }
+			 }
+			 list=list.getNext();
+		 }
+	return true;	 
+	 }
+	 
+	public static Node exe5(Node<Integer>L1) {
+		    Node<Integer> head = L1;
+		    Node<Integer> current1 = L1;
+		    Node<Integer> current2 = L1;
+
+
+		    while (current1.hasNext()) {
+		    	current2=current1;
+			    while (current2.hasNext()) {
+			    	if(current1.getValue()==current2.getNext().getValue()) {
+			    		current2.setNext(current2.getNext().getNext());
+			    	}
+			    	else {
+			    		current2=current2.getNext();
+			    	}
+			    	
+			    }
+	    		current1=current1.getNext();
+
+		    	
+		    }
+	    	return head;
+
+		}
+		
+	 public static int exe6(Node<Integer> L1) {
+	        Node<Integer> head = L1;
+	        int counter = 1;
+	        int max = 0;
+
+	        while (head.getNext() != null) {
+	            if (head.getNext().getValue() >= head.getValue()) {
+	                counter++;
+	                head = head.getNext();
+	            } else {
+	            	if(counter>max) {
+	            		max=counter;
+	            	}
+	                counter = 1;
+	                head = head.getNext();
+	            }
+	        }
+	        if(counter>max) {
+	        	max=counter;
+	        }
+	        return max;
+	    }
+
+	 
+	 public static void exe7(Node<Integer> L1) {
+		    Node<Integer> head = L1;
+		    Node<Integer> maxPointer = head;
+		    Node<Integer> startMax = head;
+		    Node<Integer> startCur= head;
+		    int counter = 1;
+		    int max = 0;
+
+		    while (head.getNext() != null) {
+		        if (head.getNext().getValue() >= head.getValue()) {
+		            counter++;
+		            head = head.getNext();
+		        } 
+		        else {
+		            if (counter > max) {
+		                max = counter;
+		                startMax = startCur;
+		            }
+		            counter = 1;
+		            head = head.getNext();
+		            startCur = head;
+		        }
+		    }
+		    if (counter > max) {
+		        max = counter;
+		        startMax = startCur;
+		    }
+
+		    Node<Integer> temp = startMax;
+		    for (int i = 0; i < max; i++) {
+		        System.out.print(temp.getValue() + " ");
+		        System.out.println();
+		        temp = temp.getNext();
+		    }
+		}
+	 
+
+		public static boolean exe8(Node<Integer> a1,Node<Integer> b1){
+			Node<Integer> a = a1;
+	        Node<Integer> b = b1;
+			while(a!=null) {
+				if(b==null) {
+					b=b1;
+				}
+				if(a.getValue()==b.getValue()) {
+					b=b.getNext();
+				}
+				else {
+					return false;
+				}
+				a=a.getNext();
+			}
+			if(b==null) {
+				return true;
+			}
+			return false;
+			
+		}
+		
+		
+		public static boolean exe9(Node<Integer> a1,Node<Integer> b1){
+			Node<Integer> a = a1;
+	        Node<Integer> b = b1;
+			while(a!=null) {
+				if(b==null) {
+					return true;
+				}
+				if(a.getValue()==b.getValue()) {
+					b=b.getNext();
+				}
+				else {
+					b=b1;
+				}
+				a=a.getNext();
+			}
+			if(b==null) {
+				return true;
+			}
+			return false;
+		}
+		
+		
+		
+		public static boolean exe10(Node<Integer> a1){
+			int [] arr= {0,0,0,0,0,0,0,0,0,0,0};
+			while(a1!=null) {
+				if(a1.getValue()>10 && a1.getValue()<1) {
+					arr[a1.getValue()-1]++;
+				}
+				a1=a1.getNext();
+			}
+			for(int i=0;i<10;i++) {
+				if(arr[i]==0) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		
+		public static boolean f10(Node<Integer> a1){
+			Node<Integer> a = a1;
+			boolean b=false;
+			for(int i=1;i<11;i++) {
+				b=false;
+				while(a1!=null) {
+					if(i==a1.getValue()) {
+						b=true;
+					}
+					a1=a1.getNext();
+			}
+				a1=a;
+				if(b==false) {
+					return false;
+				}
+			}
+			return true;
+		
+		}
+
+
+	 
+	 
+	 
 
 
 	public static void main(String[] args) {
@@ -92,11 +302,16 @@ public class exe2 {
 		    Node<Integer> second = new Node<>(2);
 		    Node<Integer> third = new Node<>(3);
 		    Node<Integer> fourth = new Node<>(1);
-		    Node<Integer> fifth = new Node<>(7);
+		    Node<Integer> fifth = new Node<>(6);
 		    L1.setNext(second);
 		    second.setNext(third);
 		    third.setNext(fourth);
 		    fourth.setNext(fifth);
+		    exe7(L1);
+		   System.out.println("the count is "+exe6(L1));
+		   System.out.println(exe4(L1));
+		   System.out.println(exe5(L1));
+
 		    Node<Integer> L2 = new Node<>(2); 
 		    Node<Integer> second2= new Node<>(1);
 		    Node<Integer> third2 = new Node<>(8);
